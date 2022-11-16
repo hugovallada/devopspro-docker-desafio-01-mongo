@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  bridge:
+  mongo-network:
     name: mongo-network
 
 services:
@@ -11,6 +11,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - mongo-network
 
   mongo-express:
     image: mongo-express:0.54.0
@@ -21,3 +23,5 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+    networks:
+      - mongo-network
